@@ -30,9 +30,9 @@ const CenterItem = styled.div`
   align-items: center;
   height: 100%;
   flex-direction: column;
-  /* > * {
+  svg {
     height: 100%;
-  } */
+  }
 `
 const IconWrap = styled(CenterItem)`
   color: white;
@@ -46,6 +46,11 @@ const IconAnimate = styled.div`
   /*cubic-bezier(0.18, 0.89, 0.32, 1.5);*/
   ${({ active }) => css`
     transform: ${active ? "scale(1.5)" : "scale(1)"};
+    svg {
+      transition: 0.5s;
+      transition-timing-function: ease-out;
+      height: ${active ? "70%" : "100%"};
+    }
   `}
 `
 
@@ -65,11 +70,14 @@ const Label = styled.div`
   ${({ active }) => css`
     height: ${active ? "1.5em" : "0px"};
     opacity: ${active ? "1" : "0"};
-    padding-top: ${active ? "1em" : "0"};
+    /* padding-top: ${active ? "1em" : "0"}; */
     transform: ${active ? "scale(1)" : "scale(0)"};
   `}
 `
 
+const Wrapper = styled.div`
+  text-align: center;
+`
 export const IconGame = ({ x, y, active }) => {
   const iconmap = [
     [<GiPanda />, <GiOgre />, <GiHorseHead />],
@@ -85,8 +93,10 @@ export const IconGame = ({ x, y, active }) => {
   const label = labels[y - 1][x - 1]
   return (
     <IconWrap>
-      <IconAnimate active={active}>{z}</IconAnimate>
-      {label && <Label active={active}>{label}</Label>}
+      <Wrapper>
+        <IconAnimate active={active}>{z}</IconAnimate>
+        {label && <Label active={active}>{label}</Label>}
+      </Wrapper>
     </IconWrap>
   )
   // return <>{React.createElement(iconmap[y][x])}</>
