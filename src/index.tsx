@@ -22,26 +22,36 @@ const App = () => {
   return (
     <>
       <div>
-        <Menu background={"#3d17e8"} />
-      </div>
-      <div>
-        <MegamanSelector
-          IconCmp={IconDirection}
-          background={"#3d17e8"}
-        ></MegamanSelector>
-      </div>
-      <div>
-        <MegamanSelector
-          IconCmp={IconGame}
-          background={"#e81744"}
-        ></MegamanSelector>
-      </div>
-      <div>
-        source:
+        source code:
         <a href="https://github.com/terrierscript/example-animate-grid-2">
           https://github.com/terrierscript/example-animate-grid-2
         </a>
       </div>
+      <div>
+        <h3>Menu Example</h3>
+        <Menu background={"#3d17e8"} />
+        <div>
+          <a href="https://www.uplabs.com/posts/smoothbottombar-android-library">
+            https://www.uplabs.com/posts/smoothbottombar-android-library
+          </a>
+        </div>
+      </div>
+      <Container>
+        <div>
+          <h3>Simple Cursor Example</h3>
+          <MegamanSelector
+            IconCmp={IconDirection}
+            background={"#3d17e8"}
+          ></MegamanSelector>
+        </div>
+        <div>
+          <h3>MEGA MAN like Example</h3>
+          <MegamanSelector
+            IconCmp={IconGame}
+            background={"#e81744"}
+          ></MegamanSelector>
+        </div>
+      </Container>
     </>
   )
 }
