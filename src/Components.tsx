@@ -10,8 +10,6 @@ export const Grid = styled.div`
   `}
 `
 export const Item = styled.div`
-  width: 100px;
-  height: 100px;
   ${({ x, y }) => css`
     grid-column: ${x};
     grid-row: ${y};

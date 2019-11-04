@@ -4,7 +4,7 @@ import { render } from "react-dom"
 import { IconGame, IconDirection } from "./Icon"
 import { ProfileIcon } from "./AnimateIcon"
 import { MegamanSelector } from "./MegamanGrid"
-import { MenuGrid } from "./MenuGrid"
+import { MenuGrid, Menu } from "./MenuGrid"
 
 export type Rect = {
   top: number
@@ -19,15 +19,6 @@ const Container = styled.div`
   /* grid-auto-rows: max-content; */
 `
 
-const Menu = ({ background }) => {
-  return (
-    <MenuGrid background={background}>
-      {(setCurr) => <div></div>
-      // <ProfileIcon key={1} onMouseOver={setCurr({ x: 1 })} />
-      }
-    </MenuGrid>
-  )
-}
 const App = () => {
   return (
     <>

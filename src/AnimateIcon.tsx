@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import styled, { css } from "styled-components"
-import { FiUser } from "react-icons/fi"
+import { FiUser, FiHome, FiInbox } from "react-icons/fi"
 
 const IconWrap = styled.div`
   color: white;
@@ -8,32 +8,62 @@ const IconWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3em;
+  font-size: 2.5em;
+  line-height: 2em;
+  padding: 0.1em 0.5em;
   /* height: 100%; */
 `
 
-const AnimateIcon = styled(IconWrap)`
-  color: #000;
+const AnimateIconInner = styled(IconWrap)`
+  /* color: #000; */
   transition: 0.5s;
+  /* display: inline-block; */
 
-  :hover::after {
-    width: auto;
-    max-width: max-content;
-  }
+  /* font-size: 100%; */
+  /* :hover::after {
+    width: 100%;
+  } */
   ::after {
+    font-size: 0.6em;
     transition: 0.5s;
-    max-width: 0px;
+    /* width: 0px; */
+
     overflow: hidden;
-    ${({ text }) => css`
+    ${({ text, active }) => css`
       content: "${text}";
+      padding: 0 ${active ? "0.5em" : "0"};
+      width: ${active ? "100%" : "0px"};
+      opacity: ${active ? 1 : 0};
+      /* transform: ${active ? "scale(1)" : "scale(0)"} */
     `}
   }
 `
 
-export const ProfileIcon: FC<{}> = () => {
+const AnimationContainer = styled.div`
+  width: auto;
+`
+
+const AnimateIcon = ({ active, children, text }) => {
   return (
-    <AnimateIcon text="Profile">
-      <FiUser />
-    </AnimateIcon>
+    <AnimateIconInner active={active} text={text}>
+      <AnimationContainer>{children}</AnimationContainer>
+    </AnimateIconInner>
   )
 }
+export const HomeIcon = ({ active }) => (
+  <AnimateIcon active={active} text="Home">
+    <FiHome />
+  </AnimateIcon>
+)
+
+export const InboxIcon = ({ active }) => (
+  <AnimateIcon active={active} text="Inbox">
+    <FiInbox />
+  </AnimateIcon>
+)
+
+export const ProfileIcon = ({ active }) => (
+  <AnimateIcon active={active} text="Profile">
+    <FiUser />
+  </AnimateIcon>
+)
