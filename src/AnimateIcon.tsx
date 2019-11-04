@@ -15,6 +15,9 @@ const IconWrap = styled.div`
 
 const AnimateIconInner = styled(IconWrap)`
   transition: 0.5s;
+  ${({ active }) => css`
+    opacity: ${active ? 1 : "0.5"};
+  `}
   ::after {
     font-size: 0.6em;
     transition: 0.5s;
