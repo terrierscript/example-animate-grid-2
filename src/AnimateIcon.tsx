@@ -23,8 +23,8 @@ const AnimateIconInner = styled(IconWrap)`
     transition: 0.5s;
 
     overflow: hidden;
-    ${({ text, active }) => css`
-      content: "${text}";
+    content: attr(data-text);
+    ${({ active }) => css`
       padding: 0 ${active ? "0.5em" : "0"};
       width: ${active ? "100%" : "0px"};
       opacity: ${active ? 1 : 0};
@@ -39,7 +39,7 @@ const AnimationContainer = styled.div`
 
 const AnimateIcon = ({ active, children, text }) => {
   return (
-    <AnimateIconInner active={active} text={text}>
+    <AnimateIconInner active={active} data-text={text}>
       <AnimationContainer>{children}</AnimationContainer>
     </AnimateIconInner>
   )
