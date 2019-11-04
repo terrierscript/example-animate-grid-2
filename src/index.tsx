@@ -36,22 +36,6 @@ const App = () => {
           </a>
         </div>
       </div>
-      <Container>
-        <div>
-          <h3>Simple Cursor Example</h3>
-          <MegamanSelector
-            IconCmp={IconDirection}
-            background={"#3d17e8"}
-          ></MegamanSelector>
-        </div>
-        <div>
-          <h3>MEGA MAN like Example</h3>
-          <MegamanSelector
-            IconCmp={IconGame}
-            background={"#e81744"}
-          ></MegamanSelector>
-        </div>
-      </Container>
     </>
   )
 }
