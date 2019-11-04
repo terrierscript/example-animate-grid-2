@@ -2,9 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import { render } from "react-dom"
 import { IconGame, IconDirection } from "./Icon"
-import { ProfileIcon } from "./AnimateIcon"
 import { MegamanSelector } from "./MegamanGrid"
-import { MenuGrid, Menu } from "./MenuGrid"
+import { Menu } from "./MenuGrid"
 
 export type Rect = {
   top: number
@@ -23,21 +22,20 @@ const App = () => {
   return (
     <>
       <div>
-        <ProfileIcon />
-      </div>
-      <div>
         <Menu background={"#3d17e8"} />
       </div>
-      <Container>
+      <div>
         <MegamanSelector
           IconCmp={IconDirection}
           background={"#3d17e8"}
         ></MegamanSelector>
+      </div>
+      <div>
         <MegamanSelector
           IconCmp={IconGame}
           background={"#e81744"}
         ></MegamanSelector>
-      </Container>
+      </div>
     </>
   )
 }

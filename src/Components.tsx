@@ -23,6 +23,7 @@ export const Cursor = styled.div`
   /* border: 1px solid red; */
   position: absolute;
   transition: 0.4s;
+  transition-timing-function: ease-in-out;
   /* transition-delay: 0.1s; */
   background: rgba(255, 255, 255, 0.5);
   border-radius: 16px;

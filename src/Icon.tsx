@@ -32,16 +32,44 @@ const IconWrap = styled.div`
   align-items: center;
   font-size: 3em;
   height: 100%;
+  flex-direction: column;
 `
 
-export const IconGame = ({ x, y }) => {
+const AnimationContainer = styled.div`
+  width: auto;
+  height: auto;
+`
+const Label = styled.div`
+  transition: 0.5s;
+  /* height: 0px; */
+  overflow: hidden;
+  font-size: 0.3em;
+  text-align: center;
+  ${({ active }) => css`
+    height: ${active ? "1.5em" : "0px"};
+    opacity: ${active ? "1" : "0"};
+  `}
+`
+
+export const IconGame = ({ x, y, active }) => {
   const iconmap = [
     [<GiPanda />, <GiOgre />, <GiHorseHead />],
     [<GiFloatingTentacles />, <GiCogLock />, <GiRobotHelmet />],
     [<GiLuchador />, <GiSpikedDragonHead />, <GiOni />]
   ]
+  const labels = [
+    ["Panda", "Ogre", "HorseHead"],
+    ["Tentacles", "select", "RobotHelmet"],
+    ["Luchador", "Dragon", "Oni"]
+  ]
   const z = iconmap[y - 1][x - 1]
-  return <IconWrap>{z}</IconWrap>
+  const label = labels[y - 1][x - 1]
+  return (
+    <IconWrap>
+      <div>{z}</div>
+      <Label active={active}>{label}</Label>
+    </IconWrap>
+  )
   // return <>{React.createElement(iconmap[y][x])}</>
 }
 

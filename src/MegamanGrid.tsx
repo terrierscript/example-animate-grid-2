@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import styled from "styled-components"
 import { useCursor } from "./useCursor"
 import { Grid, Item, PositionCalcurator, Cursor } from "./Components"
@@ -16,6 +16,11 @@ export const MegamanSelector = ({ IconCmp, background }) => {
     calcuratorRef,
     gridPosition
   } = useCursor({ x: 2, y: 2 })
+  const isActive = useCallback(
+    (x, y) => gridPosition.x === x && gridPosition.y === y,
+    [gridPosition]
+  )
+
   return (
     <div>
       <MegamanGrid background={background}>
@@ -27,7 +32,7 @@ export const MegamanSelector = ({ IconCmp, background }) => {
               key={`${x}_${y}`}
               onMouseOver={() => setGridPosition({ x, y })}
             >
-              <IconCmp x={x} y={y} />
+              <IconCmp x={x} y={y} active={isActive(x, y)} />
             </Item>
           ))
         )}
