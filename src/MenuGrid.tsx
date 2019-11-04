@@ -1,10 +1,19 @@
 import React, { useCallback } from "react"
-import { MegamanGrid } from "./MegamanGrid"
-import { PositionCalcurator, Cursor, Grid, Item } from "./Components"
 import { useCursor } from "./useCursor"
-import { ProfileIcon, HomeIcon, InboxIcon } from "./AnimateIcon"
-import styled from "styled-components"
-import { useSpring, animated } from "react-spring"
+import styled, { css } from "styled-components"
+import { FiUser, FiHome, FiInbox } from "react-icons/fi"
+
+const Container = styled.div`
+  width: 500px;
+`
+const Grid = styled.div`
+  display: grid;
+
+  width: max-content;
+  border-radius: 32px;
+  padding: 1em;
+  margin: 1em;
+`
 
 const MenuGrid = styled(Grid)`
   width: 100%;
@@ -14,9 +23,73 @@ const MenuGrid = styled(Grid)`
   background: #432ebf;
   grid-template-columns: repeat(3, calc(100% / 3));
 `
-const Container = styled.div`
-  width: 500px;
+
+const Item = styled.div`
+  ${({ x }) => css`
+    grid-column: ${x};
+  `}
+  grid-row: 1;
 `
+
+const Cursor = styled.div`
+  /* border: 1px solid red; */
+  position: absolute;
+  transition: 0.4s;
+  transition-timing-function: ease-in-out;
+  /* transition-delay: 0.1s; */
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  ${({ top, left, width, height }) => css`
+    top: ${top};
+    left: ${left};
+    width: ${width};
+    height: ${height};
+  `};
+`
+const IconWrap = styled.div`
+  color: white;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  line-height: 2em;
+  padding: 0.1em 0.8em;
+`
+
+const AnimateIconInner = styled(IconWrap)`
+  transition: 0.5s;
+  ${({ active }) => css`
+    opacity: ${active ? 1 : "0.4"};
+  `}
+  ::after {
+    font-size: 0.6em;
+    transition: 0.5s;
+
+    overflow: hidden;
+    content: attr(data-text);
+    ${({ active }) => css`
+      padding: 0 ${active ? "0.5em" : "0"};
+      width: ${active ? "100%" : "0px"};
+      opacity: ${active ? 1 : 0};
+      /* transform: ${active ? "scale(1)" : "scale(0)"} */
+    `}
+  }
+`
+
+const AnimationContainer = styled.div`
+  width: auto;
+`
+
+const AnimateIcon = ({ x, onMouseOver, active, children, text }) => {
+  return (
+    <Item x={x} onMouseOver={onMouseOver}>
+      <AnimateIconInner active={active} data-text={text}>
+        <AnimationContainer>{children}</AnimationContainer>
+      </AnimateIconInner>
+    </Item>
+  )
+}
 
 export const Menu = ({ background }) => {
   const {
@@ -24,25 +97,24 @@ export const Menu = ({ background }) => {
     setGridPosition,
     calcuratorRef,
     gridPosition
-  } = useCursor({ x: 1, y: 1 })
-  const isActive = useCallback(
-    (x, y) => gridPosition.x === x && gridPosition.y === y,
-    [gridPosition]
-  )
+  } = useCursor(1)
+  const isActive = useCallback((x) => gridPosition === x, [gridPosition])
+  const icons = [["Home", FiHome], ["Inbox", FiInbox], ["Profile", FiUser]]
   return (
     <Container>
       <MenuGrid>
         {cursorRect && <Cursor {...cursorRect} />}
-        <Item x={1} y={1} onMouseOver={(e) => setGridPosition({ x: 1, y: 1 })}>
-          <HomeIcon active={isActive(1, 1)} />
-        </Item>
-        <Item x={2} y={1} onMouseOver={(e) => setGridPosition({ x: 2, y: 1 })}>
-          <InboxIcon active={isActive(2, 1)} />
-        </Item>
-        <Item x={3} y={1} onMouseOver={(e) => setGridPosition({ x: 3, y: 1 })}>
-          <ProfileIcon active={isActive(3, 1)} />
-        </Item>
-        <PositionCalcurator ref={calcuratorRef} {...gridPosition} />
+        {icons.map(([text, Icon], i) => (
+          <AnimateIcon
+            x={i + 1}
+            onMouseOver={(e) => setGridPosition(i + 1)}
+            text={text}
+            active={isActive(i + 1)}
+          >
+            <Icon />
+          </AnimateIcon>
+        ))}
+        <Item ref={calcuratorRef} x={gridPosition} /> {/* PositionCalcurator */}
       </MenuGrid>
     </Container>
   )
