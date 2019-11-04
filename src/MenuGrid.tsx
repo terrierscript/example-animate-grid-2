@@ -112,7 +112,7 @@ const AnimateIcon = ({ x, onMouseOver, active, children, text }) => {
   )
 }
 
-export const Menu = ({ background }) => {
+export const Menu = () => {
   const {
     cursorRect,
     setGridPosition,

@@ -1,9 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import { render } from "react-dom"
-import { IconGame, IconDirection } from "./Icon"
-import { MegamanSelector } from "./MegamanGrid"
 import { Menu } from "./MenuGrid"
+import { Menu1 } from "./MenuGrid-1"
+import { Menu2 } from "./MenuGrid-2"
+import { Menu3 } from "./MenuGrid-3"
 
 const Container = styled.div`
   display: grid;
@@ -22,7 +23,11 @@ const App = () => {
       </div>
       <div>
         <h3>Menu Example</h3>
-        <Menu background={"#3d17e8"} />
+        <Menu1 />
+        <Menu2 />
+        <Menu3 />
+        <Menu4 />
+        <Menu />
         <div>
           <a href="https://www.uplabs.com/posts/smoothbottombar-android-library">
             https://www.uplabs.com/posts/smoothbottombar-android-library
