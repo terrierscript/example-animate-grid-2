@@ -1,7 +1,31 @@
 import React, { useCallback } from "react"
-import { useCursor } from "./useCursor"
 import styled, { css } from "styled-components"
 import { FiUser, FiHome, FiInbox } from "react-icons/fi"
+
+import { useState, useRef, useEffect } from "react"
+
+export type Rect = {
+  top: number
+  left: number
+  width: number
+  height: number
+}
+
+export const useCursor = (initial = 1) => {
+  const [gridPosition, setGridPosition] = useState<number>(initial)
+  const [cursorRect, setCursor] = useState<null | Rect>(null)
+  const calcuratorRef = useRef<HTMLElement>(null)
+  useEffect(() => {
+    if (!calcuratorRef.current) return
+    const top = calcuratorRef.current.offsetTop
+    const left = calcuratorRef.current.offsetLeft
+    const width = calcuratorRef.current.clientWidth
+    const height = calcuratorRef.current.clientHeight
+    const cursor = { top, left, width, height }
+    setCursor(cursor)
+  }, [gridPosition])
+  return { cursorRect, setGridPosition, calcuratorRef, gridPosition }
+}
 
 const Container = styled.div`
   width: 500px;
@@ -32,11 +56,9 @@ const Item = styled.div`
 `
 
 const Cursor = styled.div`
-  /* border: 1px solid red; */
   position: absolute;
   transition: 0.4s;
   transition-timing-function: ease-in-out;
-  /* transition-delay: 0.1s; */
   background: rgba(255, 255, 255, 0.3);
   border-radius: 24px;
   ${({ top, left, width, height }) => css`
@@ -72,7 +94,6 @@ const AnimateIconInner = styled(IconWrap)`
       padding: 0 ${active ? "0.5em" : "0"};
       width: ${active ? "100%" : "0px"};
       opacity: ${active ? 1 : 0};
-      /* transform: ${active ? "scale(1)" : "scale(0)"} */
     `}
   }
 `

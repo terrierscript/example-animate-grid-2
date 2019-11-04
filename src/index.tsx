@@ -5,13 +5,6 @@ import { IconGame, IconDirection } from "./Icon"
 import { MegamanSelector } from "./MegamanGrid"
 import { Menu } from "./MenuGrid"
 
-export type Rect = {
-  top: number
-  left: number
-  width: number
-  height: number
-}
-
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
