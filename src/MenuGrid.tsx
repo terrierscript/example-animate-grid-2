@@ -4,6 +4,7 @@ import { PositionCalcurator, Cursor, Grid, Item } from "./Components"
 import { useCursor } from "./useCursor"
 import { ProfileIcon, HomeIcon, InboxIcon } from "./AnimateIcon"
 import styled from "styled-components"
+import { useSpring, animated } from "react-spring"
 
 const MenuGrid = styled(Grid)`
   width: 100%;
@@ -16,6 +17,7 @@ const MenuGrid = styled(Grid)`
 const Container = styled.div`
   width: 500px;
 `
+
 export const Menu = ({ background }) => {
   const {
     cursorRect,

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled, { css, keyframes } from "styled-components"
 export const Grid = styled.div`
   display: grid;
   width: max-content;
@@ -19,6 +19,7 @@ export const PositionCalcurator = styled(Item)`
   /* border: 1px solid black; */
   /* transition: 0.5s; */
 `
+
 export const Cursor = styled.div`
   /* border: 1px solid red; */
   position: absolute;
@@ -27,7 +28,6 @@ export const Cursor = styled.div`
   /* transition-delay: 0.1s; */
   background: rgba(255, 255, 255, 0.3);
   border-radius: 24px;
-
   ${({ top, left, width, height }) => css`
     top: ${top};
     left: ${left};
