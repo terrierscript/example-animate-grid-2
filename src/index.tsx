@@ -36,6 +36,12 @@ const App = () => {
           background={"#e81744"}
         ></MegamanSelector>
       </div>
+      <div>
+        source:
+        <a href="https://github.com/terrierscript/example-animate-grid-2">
+          https://github.com/terrierscript/example-animate-grid-2
+        </a>
+      </div>
     </>
   )
 }
