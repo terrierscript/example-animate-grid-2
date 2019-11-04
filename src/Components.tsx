@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from "styled-components"
 export const Grid = styled.div`
   display: grid;
+
   width: max-content;
   border-radius: 32px;
   padding: 1em;

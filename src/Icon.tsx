@@ -24,15 +24,20 @@ import {
 } from "react-icons/Gi"
 import styled, { css } from "styled-components"
 
-const IconWrap = styled.div`
-  color: white;
-  opacity: 0.75;
+const CenterItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5em;
   height: 100%;
   flex-direction: column;
+  /* > * {
+    height: 100%;
+  } */
+`
+const IconWrap = styled(CenterItem)`
+  color: white;
+  opacity: 0.75;
+  font-size: 2.5em;
 `
 
 const IconAnimate = styled.div`
