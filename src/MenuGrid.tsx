@@ -7,6 +7,10 @@ import styled from "styled-components"
 
 const MenuGrid = styled(Grid)`
   width: 100%;
+  padding: 2em;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background: #432ebf;
   grid-template-columns: repeat(3, calc(100% / 3));
 `
 const Container = styled.div`
@@ -25,7 +29,7 @@ export const Menu = ({ background }) => {
   )
   return (
     <Container>
-      <MenuGrid background={background}>
+      <MenuGrid>
         {cursorRect && <Cursor {...cursorRect} />}
         <Item x={1} y={1} onMouseOver={(e) => setGridPosition({ x: 1, y: 1 })}>
           <HomeIcon active={isActive(1, 1)} />

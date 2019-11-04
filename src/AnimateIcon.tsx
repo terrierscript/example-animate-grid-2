@@ -4,29 +4,20 @@ import { FiUser, FiHome, FiInbox } from "react-icons/fi"
 
 const IconWrap = styled.div`
   color: white;
-  opacity: 0.75;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5em;
+  font-size: 2em;
   line-height: 2em;
-  padding: 0.1em 0.5em;
-  /* height: 100%; */
+  padding: 0.1em 0.8em;
 `
 
 const AnimateIconInner = styled(IconWrap)`
-  /* color: #000; */
   transition: 0.5s;
-  /* display: inline-block; */
-
-  /* font-size: 100%; */
-  /* :hover::after {
-    width: 100%;
-  } */
   ::after {
     font-size: 0.6em;
     transition: 0.5s;
-    /* width: 0px; */
 
     overflow: hidden;
     ${({ text, active }) => css`

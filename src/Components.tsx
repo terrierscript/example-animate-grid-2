@@ -2,7 +2,7 @@ import styled, { css } from "styled-components"
 export const Grid = styled.div`
   display: grid;
   width: max-content;
-  border-radius: 16px;
+  border-radius: 32px;
   padding: 1em;
   margin: 1em;
   ${({ background }) => css`
@@ -25,8 +25,9 @@ export const Cursor = styled.div`
   transition: 0.4s;
   transition-timing-function: ease-in-out;
   /* transition-delay: 0.1s; */
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+
   ${({ top, left, width, height }) => css`
     top: ${top};
     left: ${left};
