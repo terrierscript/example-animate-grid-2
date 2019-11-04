@@ -5,6 +5,7 @@ import { Menu } from "./MenuGrid"
 import { Menu1 } from "./MenuGrid-1"
 import { Menu2 } from "./MenuGrid-2"
 import { Menu3 } from "./MenuGrid-3"
+import { Menu4 } from "./MenuGrid-4"
 
 const Container = styled.div`
   display: grid;

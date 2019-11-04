@@ -74,8 +74,8 @@ const Cursor = styled.div`
   position: absolute;
   transition: 0.4s;
   transition-timing-function: ease-in-out;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 24px;
+  background: green;
+  opacity: 0.5;
   ${({ top, left, width, height }) => css`
     top: ${top};
     left: ${left};
@@ -83,6 +83,34 @@ const Cursor = styled.div`
     height: ${height};
   `};
 `
+
+const AnimateIconInner = styled(IconWrap)`
+  transition: 0.5s;
+  ::after {
+    font-size: 0.6em;
+    transition: 0.5s;
+
+    overflow: hidden;
+    content: attr(data-text);
+    ${({ active }) => css`
+      width: ${active ? "100%" : "0px"};
+    `}
+  }
+`
+
+const AnimationContainer = styled.div`
+  width: auto;
+`
+
+const AnimateIcon = ({ x, onMouseOver, active, children, text }) => {
+  return (
+    <Item x={x} onMouseOver={onMouseOver}>
+      <AnimateIconInner active={active} data-text={text}>
+        <AnimationContainer>{children}</AnimationContainer>
+      </AnimateIconInner>
+    </Item>
+  )
+}
 export const Menu4 = () => {
   const [gridPosition, setGridPosition] = useState<number>(1)
   const [cursorRect, setCursor] = useState<null | Rect>(null)
@@ -96,18 +124,24 @@ export const Menu4 = () => {
     const cursor = { top, left, width, height }
     setCursor(cursor)
   }, [gridPosition])
-  const icons = [FiHome, FiInbox, FiUser]
+  const isActive = useCallback((x) => gridPosition === x, [gridPosition])
+  const icons = [["Home", FiHome], ["Inbox", FiInbox], ["Profile", FiUser]]
 
   return (
     <Container>
       {cursorRect && <Cursor {...cursorRect} />}
 
       <MenuGrid>
-        {icons.map((Icon, i) => (
+        {icons.map(([text, Icon], i) => (
           <Item x={i + 1} onMouseOver={(e) => setGridPosition(i + 1)}>
-            <IconWrap>
+            <AnimateIcon
+              x={i + 1}
+              onMouseOver={(e) => setGridPosition(i + 1)}
+              text={text}
+              active={isActive(i + 1)}
+            >
               <Icon />
-            </IconWrap>
+            </AnimateIcon>
           </Item>
         ))}
         <PositionCalcurator ref={calcuratorRef} x={gridPosition} />
