@@ -77,10 +77,10 @@ const Cursor = styled.div`
   background: green;
   opacity: 0.5;
   ${({ top, left, width, height }) => css`
-    top: ${top};
-    left: ${left};
-    width: ${width};
-    height: ${height};
+    top: ${top}px;
+    left: ${left}px;
+    width: ${width}px;
+    height: ${height}px;
   `};
 `
 
@@ -111,6 +111,7 @@ const AnimateIcon = ({ x, onMouseOver, active, children, text }) => {
     </Item>
   )
 }
+
 export const Menu4 = () => {
   const [gridPosition, setGridPosition] = useState<number>(1)
   const [cursorRect, setCursor] = useState<null | Rect>(null)

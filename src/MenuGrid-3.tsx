@@ -77,10 +77,10 @@ const Cursor = styled.div`
   background: green;
   opacity: 0.5;
   ${({ top, left, width, height }) => css`
-    top: ${top};
-    left: ${left};
-    width: ${width};
-    height: ${height};
+    top: ${top}px;
+    left: ${left}px;
+    width: ${width}px;
+    height: ${height}px;
   `};
 `
 export const Menu3 = () => {

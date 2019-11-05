@@ -62,10 +62,10 @@ const Cursor = styled.div`
   background: rgba(255, 255, 255, 0.3);
   border-radius: 24px;
   ${({ top, left, width, height }) => css`
-    top: ${top};
-    left: ${left};
-    width: ${width};
-    height: ${height};
+    top: ${top}px;
+    left: ${left}px;
+    width: ${width}px;
+    height: ${height}px;
   `};
 `
 const IconWrap = styled.div`
